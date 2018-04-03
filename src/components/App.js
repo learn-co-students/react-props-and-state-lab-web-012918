@@ -16,10 +16,9 @@ class App extends React.Component {
   }
 
   onChangeType = (event) => {
-    let val = event.target.value
     this.setState({
       filters:{
-        type: val,
+        type: event.target.value,
       }
     })
   }
@@ -52,15 +51,15 @@ class App extends React.Component {
       let index = this.state.pets.indexOf(pet)
       let newPets = this.state.pets.slice(0)
       newPets[index].isAdopted = !newPets[index].isAdopted
-      let newAdoptedPets = this.state.adoptedPets
+      let newAdoptedPets = this.state.adoptedPets.slice(0)
       newAdoptedPets.push(id)
 
       this.setState({
         adoptedPets: newAdoptedPets,
         pets: newPets
-      })
+      }, ()=>console.log(this.state.adoptedPets))
     }
-    console.log(this.state.adoptedPets)
+
   }
 
   render() {
